@@ -1,0 +1,75 @@
+<html>
+
+<head>
+	<title>TRACKME </title>
+	<link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+	<button class="button" id="start" value="off" onclick="changeState()"> Start</button>
+	<button class="button" id="record" onclick="increment(1)"> Record</button>
+	<button class="button" id="stop" onclick="reset()"> Stop</button>
+	<p id="counter"> 0 </p>
+
+	<p id="start-date-time"></p>
+	<p id="date-time"> </p>
+	<p id = "end-date-time"> </p>
+
+
+
+</body>
+
+<script>
+
+	function changeState(){
+		document.getElementById("start").value = "on";
+		document.getElementById("start-date-time").innerHTML = "Started : " + datetime();
+
+	}
+
+
+	function increment(val){
+		if(document.getElementById("start").value == "on"){
+
+			var curr_count = document.getElementById("counter").innerHTML;
+			next_count = parseInt(curr_count,10)+val;
+
+			document.getElementById("counter").innerHTML = next_count;
+			document.getElementById("date-time").innerHTML = "Last Recorded : " + datetime();
+
+		}
+
+	}
+
+	function datetime(){
+		var currentdate = new Date();
+		var formatteddate = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds() + ":"
+								+ currentdate.getMilliseconds();
+
+		return formatteddate;
+
+
+	}
+
+	function reset(){
+		document.getElementById("counter").innerHTML = 0;
+		document.getElementById("start").value = "off";
+		document.getElementById("end-date-time").innerHTML = "Stopped : " + datetime();
+
+
+
+
+	}
+
+
+
+</script>
+
+
+</html>
